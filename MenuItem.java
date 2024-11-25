@@ -22,23 +22,9 @@ public class MenuItem {
      */
     @Override
     public String toString() {
-        return  name+ "  |"  + price+"  |"  + explain ;
+        return name + " | " + price + " | " + (explain.isEmpty() ? "" : explain);
     }
 
-    public String getName() {
-        return name;
-    }
-    public double getPrice() {
-        return price;
-    }
-    public String getExplain() {
-        return explain;
-    }
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
-    }
-    public void addMenuItem(String name, double price, String explain) {
-        menuItems.add(new MenuItem(name,price,explain));
-    }
+
 
 }

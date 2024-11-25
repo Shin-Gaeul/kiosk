@@ -1,50 +1,32 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Arrays;
+
 
 public class Main {
     public static void main(String[] args) {
-        List<MenuItem> menuItems = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
+        Menu burgers = new Menu("Burgers");
+        burgers.addMenuItem(new MenuItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
+        burgers.addMenuItem(new MenuItem("SmokeShack", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
+        burgers.addMenuItem(new MenuItem("Hamburger", 5.4, "비프패티를 기반으로 야채가 들어간 기본버거"));
 
 
-        while (true) {
-            System.out.println("이름을 입력하세요: ");
-            String name = sc.nextLine();
-            if (name.equals("menu add end")) {
-                System.out.println("메뉴추가가 완료되었습니다");
-                break;
-            } else {
-                System.out.println("가격을 입력하세요: ");
-                double price = sc.nextDouble();
-                sc.nextLine();
-                System.out.println("설명을 입력하세요: ");
-                String explane = sc.nextLine();
+        Menu drinks = new Menu("Drinks");
+        drinks.addMenuItem(new MenuItem("Coke", 2.5, ""));
+        drinks.addMenuItem(new MenuItem("Sprite", 2.5, ""));
+        drinks.addMenuItem(new MenuItem("Water", 1.0, ""));
+
+        Menu desserts = new Menu("Desserts");
+        desserts.addMenuItem(new MenuItem("Ice Cream", 3.5, "바닐라 아이스크림"));
+        desserts.addMenuItem(new MenuItem("Brownie", 4.0, "초콜릿 브라우니"));
 
 
-                MenuItem menuItem = new MenuItem(name, price, explane);
-                menuItems.add(menuItem);
-            }
-        }
-
-
-        String a = "0. 종료          | 종료";
-
-        for (int i = 0; i < menuItems.size(); i++) {
-            System.out.println((i + 1) + ". " + menuItems.get(i).toString());
-        }
-        System.out.println(a);
-        do {
-            int f = sc.nextInt();
-            if (f == 0) {
-                System.out.println(a);
-                System.out.println("프로그램을 종료합니다.");
-                break;
-            } else {
-                System.out.println(menuItems.get(f - 1).toString());
-            }
-        } while (true);
+        // 키오스크 생성 및 메뉴 전달
+        Kiosk kiosk = new Kiosk();
+        kiosk.setMenus(Arrays.asList(burgers, drinks)); // 메뉴 전달
+        kiosk.start(); // Kiosk 실행
+    }
     }
 
-}
 
